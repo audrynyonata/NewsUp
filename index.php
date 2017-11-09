@@ -4,7 +4,7 @@
     NewsUp by NewsFinders
   </title>
   <link href="css/master.css" rel="stylesheet">
-  
+  <link rel="shortcut icon" href="img/icon.png" type="image/png">
 </head>
 <body>
   <div class="frame">
@@ -12,7 +12,7 @@
       <span id = "title">NewsUp</span><br>
       <span id = "subtitle">by NewsFinders</span>
     </div>
-    <div class="chatwindow">
+    <div class="chatwindow" id="scrollbar">
       a<br>
       a<br>
       a<br>
@@ -49,8 +49,10 @@
       a<br>
     </div>
     <div class="form">
-      <input type="text" id="keyword" name="keyword">
-      <input type="submit" id="send" name="send" value="SEND">
+      <form method="POST" action="send.php">
+      <textarea id="keyword" name="keyword" placeholder="ketik pesan anda disini..."></textarea> 
+      <button type="submit" id="send" name="send" value="">
+    </form>
     </div>
   </div>
 </body>
