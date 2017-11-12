@@ -9,7 +9,7 @@ div {
 .logo {
   padding: 5px 0 10px 0;
   text-align: center;
-  background-color: lightgrey;
+  background-color: #00B863;
   width: 100%;
   height: 75px;
 }
@@ -17,18 +17,21 @@ div {
 #title {
   font-family: "Bookman";
   font-size: 32pt;
+  color: white;
 }
 
 #subtitle {
   font-family: "Georgia";
   font-size: 14pt;
+  color: white;
 }
 
 .frame {
   height: 600px;
   width: 400px;
   border-style: solid;
-  border-color: lightgrey;
+  border-color: #00B863;
+  background-color: #00B863;
   border-radius: 5px;
   position: fixed;
   left:0; right:0;
@@ -43,6 +46,7 @@ div {
   width: 100%;
   overflow:auto;  
   height: 450px; 
+  background-color: #ECF0F1;
 }
 
 #scrollbar::-webkit-scrollbar
@@ -88,14 +92,13 @@ div {
 .callout {
 	min-width: 200px;
   max-width: 320px;
-  background-color: #444;
+  background-color: #00B863;
   position: relative;
-  color: #ccc;
+  color: #fff;
 	padding: 6px;
 	border-radius: 3px;
 	margin: 10px;
 	min-height: 20px;
-	border: 1px solid #333;
 }
 
 .callout.right {
@@ -117,11 +120,11 @@ div {
 .callout.left::before {
 	left: 7px;
 	bottom: -20px;
-	border-top: 10px solid #444;
+	border-top: 10px solid #00B863;
 }
 
 .callout.right::before {
 	right: 7px;
 	bottom: -20px;
-	border-top: 10px solid #444;
+	border-top: 10px solid #00B863;
 }

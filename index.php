@@ -20,7 +20,7 @@
     <div class="form">
       <form method="POST">
       <textarea id="keyword" name="keyword" placeholder="ketik pesan anda disini..." onkeyup="pressEnter(event)"></textarea> 
-      <button type="submit" id="send" name="send" value="" onclick="sendMessage()">
+      <button type="button" id="send" name="send" value="" onclick="sendMessage()">
     </form>
     </div>
   </div>
@@ -44,14 +44,18 @@
       var textarea = document.getElementById("keyword");
       var str = textarea.value;
       if (str == "") {
-          
+          // do nothing
+
       } else {
+          // tambahkan chat balloon baru
           var div = document.createElement("div");
           div.setAttribute("id", "test"+nomor);
-          div.setAttribute("class", "callout right");;
-          div.innerText = str;
+          div.setAttribute("class", "callout right");
+          div.innerText = moment().format('LT') + "\n" + str;
           document.getElementById("scrollbar").appendChild(div);
           nomor++;
+
+          // setting up xmlhttp request, pengiriman ajax
           var xmlhttp = new XMLHttpRequest();
           xmlhttp.onreadystatechange = function() {
           if (this.readyState == 4 && this.status == 200) {
@@ -72,8 +76,11 @@
       var found  = 0;
       while (found==0 && i < substrings.length) {
         if (str.includes(substrings[i])) {
+          // if found terus apa?
           found = 1;
           str = substrings[i];
+
+          // iniHanyaSement ara(nomor);
         } else {
           i++;
         }
@@ -85,4 +92,6 @@
       textarea.value="";      
   }
 </script>
+<script type="text/javascript" src="moment.js"></script>
+<script type="text/javascript" src="iniHanyaSementara.js"></script>
 </html>
