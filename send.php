@@ -2,15 +2,18 @@
   $keyword = $_GET['keyword'];
   $con = mysqli_connect('localhost','root','','newsup');
   mysqli_select_db($con, 'newsup');
-  $sql = "SELECT content FROM reply WHERE query='" . (string)$keyword . "'";
+  $sql = "SELECT content FROM reply WHERE query LIKE '%" . (string)$keyword . "%'";
   $result = mysqli_query($con, $sql);
   mysqli_close($con);
   
   header('Content-Type: text/xml');
   $xml = '<reply>';
-  while($row = mysqli_fetch_array($result)){
+  if($row = mysqli_fetch_array($result)){
       $xml = $xml . '<content>' . $row['content'] . '</content>';
-  }
+  } else {
+      $xml = $xml . '<content>' . "Maaf, silahkan masukkan kata kunci yang benar". '</content>';
+  } 
+  
   $xml = $xml . '</reply>';
 
   print $xml;

@@ -13,11 +13,9 @@
       <span id = "subtitle">by NewsFinders</span>
     </div>
     <div class="chatwindow" id="scrollbar">
-      <div class ="callout left">haha</div>
-      <br>
-      <div class ="callout right">haha juga ah</div>
-      <div class ="callout right" id="test"></div>
-      <br>
+      <div class="callout left" id="greeting">
+        Halo! Silahkan ketik kata kunci yang anda inginkan, atau 'help' untuk bantuan.
+      </div>
     </div>
     <div class="form">
       <form method="POST">
@@ -29,6 +27,8 @@
 </body>
 
 <script type="text/javascript">
+  var nomor = 1;  
+  
   function pressEnter(e) {
     if (e.keyCode === 13)
       if (e.shiftKey) {
@@ -46,17 +46,43 @@
       if (str == "") {
           
       } else {
-          document.getElementById("test").innerText = str;
+          var div = document.createElement("div");
+          div.setAttribute("id", "test"+nomor);
+          div.setAttribute("class", "callout right");;
+          div.innerText = str;
+          document.getElementById("scrollbar").appendChild(div);
+          nomor++;
           var xmlhttp = new XMLHttpRequest();
           xmlhttp.onreadystatechange = function() {
           if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("test").innerText = str;
-          }
+            var result = xmlhttp.responseXML;
+            var content = result.getElementsByTagName('content')[0].childNodes[0].nodeValue;
+            var div2 = document.createElement("div");
+            div2.setAttribute("id", "test"+nomor);
+            div2.setAttribute("class", "callout left");
+            div2.innerText = content;
+            document.getElementById("scrollbar").appendChild(div2);
+            var scrollbar = document.getElementById("scrollbar");
+            scrollbar.scrollTop = scrollbar.scrollHeight;
+            nomor++;
+        }
       }
-      xmlhttp.open("GET", "send.php?message=" + str, true);
+      var substrings = ['help', 'politik', 'olahraga', 'malam', 'teknologi', 'ekonomi', 'siang', 'sore', 'pagi'];
+      var i = 0;
+      var found  = 0;
+      while (found==0 && i < substrings.length) {
+        if (str.includes(substrings[i])) {
+          found = 1;
+          str = substrings[i];
+        } else {
+          i++;
+        }
+      }
+      
+      xmlhttp.open("GET", "send.php?keyword=" + str, true);
       xmlhttp.send();
       }
-      textarea.value="";
+      textarea.value="";      
   }
 </script>
 </html>

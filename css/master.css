@@ -86,7 +86,8 @@ div {
 }
 
 .callout {
-	width: 200px;
+	min-width: 200px;
+  max-width: 320px;
   background-color: #444;
   position: relative;
   color: #ccc;
@@ -99,6 +100,10 @@ div {
 
 .callout.right {
   float: right;
+}
+
+.callout.left {
+  float: left;
 }
 
 .callout::before {
