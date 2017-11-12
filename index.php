@@ -13,7 +13,11 @@
       <span id = "subtitle">by NewsFinders</span>
     </div>
     <div class="chatwindow" id="scrollbar">
-      <div class="chat" id="test"></div>
+      <div class ="callout left">haha</div>
+      <br>
+      <div class ="callout right">haha juga ah</div>
+      <div class ="callout right" id="test"></div>
+      <br>
     </div>
     <div class="form">
       <form method="POST">

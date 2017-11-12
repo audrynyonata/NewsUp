@@ -85,3 +85,39 @@ div {
   background-position: center;
 }
 
+.callout {
+	height: 60px;
+	width: 200px;
+  background-color: #444;
+  position: relative;
+  color: #ccc;
+	padding: 10px;
+	border-radius: 3px;
+	margin: 10px;
+	min-height: 50px;
+	border: 1px solid #333;
+}
+
+.callout.right {
+  float: right;
+}
+
+.callout::before {
+	content: "";
+	width: 0px;
+	height: 0px;
+	border: 0.8em solid transparent;
+	position: absolute;
+}
+
+.callout.left::before {
+	left: 7px;
+	bottom: -20px;
+	border-top: 10px solid #444;
+}
+
+.callout.right::before {
+	right: 7px;
+	bottom: -20px;
+	border-top: 10px solid #444;
+}
