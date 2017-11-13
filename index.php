@@ -3,14 +3,15 @@
   <title>
     NewsUp by NewsFinders
   </title>
-  <link href="css/master.css" rel="stylesheet">
-  <link rel="shortcut icon" href="img/icon.png" type="image/png">
+  <link href="css/master.css?<?php echo date('l jS \of F Y h:i:s A'); ?>" rel="stylesheet">
+  <link rel="shortcut icon" href="img/icon.png?<?php echo date('l jS \of F Y h:i:s A'); ?>" type="image/png">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
   <div class="frame">
     <div class="logo">
-      <span id = "title">NewsUp</span><br>
-      <span id = "subtitle">by NewsFinders</span>
+      <span id = "title">News<span style="font-family:'calibri';">Up!</span></span><br>
+      <span id = "subtitle" style="color:#55709F;">by NewsFinders</span>
     </div>
     <div class="chatwindow" id="scrollbar">
       <div class="callout left" id="greeting">
@@ -20,7 +21,7 @@
     <div class="form">
       <form method="POST">
       <textarea id="keyword" name="keyword" placeholder="ketik pesan anda disini..." onkeyup="pressEnter(event)"></textarea> 
-      <button type="button" id="send" name="send" value="" onclick="sendMessage()">
+      <button type="button" id="send" name="send" value="" onclick="sendMessage()"><i class="material-icons send-white">send</i>
     </form>
     </div>
   </div>
@@ -47,7 +48,7 @@
           // do nothing
 
       } else {
-          // tambahkan chat balloon baru
+          // tambahkan chat balloon baru_dari user
           var div = document.createElement("div");
           div.setAttribute("id", "test"+nomor);
           div.setAttribute("class", "callout right");
@@ -61,6 +62,8 @@
           if (this.readyState == 4 && this.status == 200) {
             var result = xmlhttp.responseXML;
             var content = result.getElementsByTagName('content')[0].childNodes[0].nodeValue;
+
+            // tambahkan chat balloon baru_dari server
             var div2 = document.createElement("div");
             div2.setAttribute("id", "test"+nomor);
             div2.setAttribute("class", "callout left");
@@ -79,8 +82,6 @@
           // if found terus apa?
           found = 1;
           str = substrings[i];
-
-          // iniHanyaSement ara(nomor);
         } else {
           i++;
         }
@@ -93,5 +94,4 @@
   }
 </script>
 <script type="text/javascript" src="moment.js"></script>
-<script type="text/javascript" src="iniHanyaSementara.js"></script>
 </html>
