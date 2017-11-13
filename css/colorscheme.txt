@@ -14,5 +14,12 @@ COLOR SCHEME
 
 - 00B863: green chat;
 
+// line alike
 - A3BF32: green;
 - 55709F: blue;
+
+// orange
+- E77E22: orange;
+- D25400: dark orange;
+- F1C50E: yellow;
+- 124A5A: dark-blue;

@@ -1,3 +1,7 @@
+body {
+  background-color: #124A5A;
+}
+
 div {
   display: inline-block;
 }
@@ -9,7 +13,7 @@ div {
 .logo {
   padding: 5px 0 10px 0;
   text-align: center;
-  background-color: #A3BF32;
+  background-color: #D25400;
   width: 100%;
   height: 75px;
 }
@@ -30,8 +34,8 @@ div {
   height: 600px;
   width: 400px;
   border-style: solid;
-  border-color: #A3BF32;
-  background-color: #A3BF32;
+  border-color: #D25400;
+  background-color: #D25400;
   border-radius: 5px;
   position: fixed;
   left:0; right:0;
@@ -40,7 +44,7 @@ div {
 	max-width:100%;
 	max-height:100%;
   overflow:auto;
-  box-shadow: 5px 5px 10px rgba(0,0,0,.2);
+  box-shadow: 5px 5px 15px rgba(0,0,0,.2);
 }
 
 .chatWindow {
@@ -64,7 +68,7 @@ div {
 
 .send-white {
   color:#fff;
-  background-color: #A3BF32;
+  background-color: #D25400;
 }
 
 .form {
@@ -91,7 +95,7 @@ div {
   width: 60px;
   height: 60px;
   border: 0;
-  background-color: #A3BF32;
+  background-color: #D25400;
   /*background-image: url("../img/send.png");*/
   background-repeat: no-repeat;
   background-position: center;
@@ -116,7 +120,7 @@ div {
 
 .callout.left {
   float: left;
-  background-color: #55709F;
+  background-color: #E77E22;
   color: #fff;
 }
 
@@ -131,7 +135,7 @@ div {
 .callout.left::before {
 	left: 7px;
 	bottom: -20px;
-	border-top: 10px solid #55709F;
+	border-top: 10px solid #E77E22;
 }
 
 .callout.right::before {
