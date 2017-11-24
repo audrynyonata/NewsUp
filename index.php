@@ -10,10 +10,16 @@
 <body>
   <div class="frame">
     <div class="logo">
-      <span id = "title">News<span style="font-family:'calibri';">Up!</span></span><br>
-      <span id = "subtitle" style="color:#F1C50E;">by NewsFinders</span>
+      <div id = "title">News<span style="font-family:'calibri';">Up!</span></div>
     </div>
-    <div class="chatwindow" id="scrollbar">
+    <div id="settings" onclick="showsettings()"><img src="img/cog.png"></div>
+    
+    <div  id="scrollbar" class="chatwindow">
+      <div id="modal">
+        <div id="content">
+          <p>Some text in the Modal..</p>
+          </div>
+      </div>
       <div class="callout left" id="greeting">
         Halo! Silahkan ketik kata kunci yang anda inginkan, atau 'help' untuk bantuan.
       </div>
@@ -29,6 +35,21 @@
 
 <script type="text/javascript">
   var nomor = 1;  
+  
+  var modal = document.getElementById("modal");
+  function showsettings() {
+    modal.style.display = "block";
+  }
+  
+  window.onclick = function(event) {
+    if (event.target == modal) {
+        close();
+    }
+  }
+  
+  function close() {
+      modal.style.display="none";
+  }
   
   function pressEnter(e) {
     if (e.keyCode === 13)

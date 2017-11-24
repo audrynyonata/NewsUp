@@ -15,19 +15,67 @@ div {
   text-align: center;
   background-color: #D25400;
   width: 100%;
-  height: 75px;
+  height: 50px;
 }
 
 #title {
   font-family: "Bookman";
   font-size: 32pt;
   color: white;
+  width: 100%;
+  position: relative;
 }
 
 #subtitle {
   font-family: "Georgia";
   font-size: 14pt;
   color: white;
+}
+
+#settings {
+  position: absolute; 
+  top: 10px;
+  right: 10px;
+  border: solid 1px darkgrey;
+  border-radius: 15%;
+  width: 45px;
+  height: 40px;
+  text-align: center;
+  }
+
+#settings img {
+  width: 36px;
+  padding: 1px 0 0 0;
+  height: auto;
+}
+
+/* The Modal (background) */
+#modal {
+    display: none; /* Hidden by default */
+    z-index: 1; /* Sit on top */
+    
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+#content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+/* The Close Button */
+#close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
 }
 
 .frame {
@@ -50,7 +98,7 @@ div {
 .chatWindow {
   width: 100%;
   overflow:auto;  
-  height: 450px; 
+  height: 475px; 
   background-color: #ECF0F1;
 }
 
