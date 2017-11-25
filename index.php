@@ -190,12 +190,15 @@
           i++;
         }
       }
-      var dummy = createDummy();
-      var y = setTimeout(function() {appendChild(dummy),500});
-      xmlhttp.open("GET", "send.php?keyword=" + str, true);
-      xmlhttp.send();
+      if (str=="olahraga") {
+        var dummy = createDummy();
+        var y = setTimeout(function() {appendChild(dummy),500});
+      } else {
+        xmlhttp.open("GET", "send.php?keyword=" + str, true);
+        xmlhttp.send();
       }
-      textarea.value="";      
+      textarea.value="";  
+    }
 }
     
     
