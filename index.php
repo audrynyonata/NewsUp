@@ -15,7 +15,19 @@
     <div id="settings" onclick="showsettings();"><img id="cog" src="img/cog.png"></div>
       <div id="modal">
         <div id="content">
-          <p>Some text in the Modal..</p>
+          <h2>Preferences</h2>
+          <p>Masukkan alamat e-mail Anda dibawah ini untuk menerima notifikasi.</p>
+          <form method="POST" style="text-align:center;">
+            <div id="preferences">
+              <input id="email" type="text" placeholder="my@email.com">
+              <button id="clear" type="reset"></button>
+            </div>            
+            <button type="button" id="save" name="save" onclick="saveemail();">Simpan</button>          
+          </form>
+          
+          <h4>About</h4>
+          <p>Ketik 'help' pada chatbox kemudian tekan enter untuk bantuan!</p>
+          <p>NewsUp! &copy; 2017 NewsFinders. Credits to aggi, audry, ega, royyan.</p>
           </div>
       </div>
     <div  id="scrollbar" class="chatwindow">
@@ -34,6 +46,10 @@
 </body>
 
 <script type="text/javascript">
+  function saveemail() {
+    var email = document.getElementById("email");
+    alert(email.value);
+  }
 
   var nomor = 1;  
   var isModal = false;
@@ -115,7 +131,6 @@
     sendMessage();
     return true;
   }
-  
   
   function sendMessage() {
         var textarea = document.getElementById("keyword");
