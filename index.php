@@ -17,7 +17,7 @@
         <div id="content">
           <h2>Preferences</h2>
           <p>Masukkan alamat e-mail Anda dibawah ini untuk menerima notifikasi.</p>
-          <form method="POST" style="text-align:center;">
+          <form method="POST" class="centered">
             <div id="preferences">
               <input id="email" type="text" placeholder="my@email.com">
               <button id="clear" type="reset"></button>
@@ -26,14 +26,17 @@
           </form>
           
           <h4>About</h4>
-          <p>Ketik 'help' pada chatbox kemudian tekan enter untuk bantuan!</p>
+          <p>Untuk bantuan, ketik 'help' pada chatbox dan tekan enter!</p>
           <p>NewsUp! &copy; 2017 NewsFinders. Credits to aggi, audry, ega, royyan.</p>
           </div>
       </div>
-    <div  id="scrollbar" class="chatwindow">
+    <div id="scrollbar" class="chatwindow">
       <div class="callout left" id="greeting">
         Halo! Silahkan ketik kata kunci yang anda inginkan, atau 'help' untuk bantuan.
       </div>
+
+      
+      
     </div>
 
     <div class="form">
@@ -102,7 +105,7 @@
       slideKiri();
       settings.setAttribute("style","border:inset 1px black;box-shadow: inset 0 2px 4px #000;");
       cog.setAttribute("style","margin-top: 3px;filter:none");
-      modal.setAttribute("style", "z-index:1");
+      modal.setAttribute("style", "z-index:2");
       modal.style.display = "block";
       isModal = true;
     }
@@ -187,13 +190,45 @@
           i++;
         }
       }
-      
+      var dummy = createDummy();
+      var y = setTimeout(function() {appendChild(dummy),500});
       xmlhttp.open("GET", "send.php?keyword=" + str, true);
       xmlhttp.send();
       }
       textarea.value="";      
 }
-            
+    
+    
+  function createDummy() {
+    var dummy = document.createElement("div");
+    dummy.innerHTML = '\
+    <div class="callout left" id="dummy">\
+        <div class="berita" id="berita1">\
+          <img class="foto" src="img/1.jpeg">\
+          <div class="judul" onclick="window.open(\'http://olahraga.kompas.com/read/2017/11/25/11575621/mengatur-hasil-petarung-ufc-dipenjara\',\'_blank\');">\
+            <div class="bottom-text">Petinju</div>\
+          </div>\
+        </div>\
+        <div class="berita" id="berita2">\
+          <img class="foto" src="img/2.jpeg">\
+          <div class="judul"\
+          onclick="window.open(\'http://olahraga.kompas.com/read/2017/11/26/08545151/peluang-greysiaapriyani-di-mata-pelatih\',\'_blank\');">\
+          <div class="bottom-text">Pasangan Ganda Putri Indonesia, Greysia Polili Apriani Rahayu</div></div>\
+        </div>\
+        <div class="berita" id="berita3">\
+          <img class="foto" src="img/3.jpeg">\
+          <div class="judul" onclick="window.open(\'https://www.suara.com/news/2017/07/30/211549/menangi-gp-hungaria-vettel-jauhi-dari-kejaran-hamilton\',\'_blank\');">\
+            <div class="bottom-text">Pembalap Ferrari Sebastian Vettel</div></div>\
+        </div>\
+        <div class="berita" id="berita1">\
+          <img class="foto" src="img/4.jpeg">\
+          <div class="judul"\
+          onclick="window.open(\'http://bola.liputan6.com/read/3175302/makin-banyak-senggolan-di-motogp-ini-komentar-rossi\',\'_blank\');">\
+          <div class="bottom-text">Pembalap MotoGP</div></div>\
+        </div>\
+      </div>';
+      return dummy;
+    }          
 </script>
 <script type="text/javascript" src="moment.js"></script>
 </html>

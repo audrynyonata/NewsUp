@@ -61,7 +61,6 @@ div {
     background-color: rgba(0,0,0,0.4);  
 }
 
-/* Modal Content */
 #content {
     background-color: #ECF0F1;
     padding: 10px;
@@ -79,6 +78,7 @@ div {
   font-size: 16pt;
   margin-bottom: 10px;
 }
+
 #save {
   height: 40px; 
   width: 75px; 
@@ -231,4 +231,34 @@ div {
 	right: 7px;
 	bottom: -20px;
 	border-top: 10px solid #fff;
+}
+
+
+.berita {
+  width: 150px;
+  height: 150px;
+  position: relative;
+}
+.foto {
+  width: 150px;
+  height: 150px;
+  position: absolute;
+}
+
+.judul {
+  z-index: 1;
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  background: linear-gradient(transparent,transparent,black);
+  cursor: pointer;
+}
+
+.bottom-text {
+  position: absolute;
+  bottom: 0;
+  padding: 2px; 
+  max-width: 150px;
+  overflow: hidden;
+  word-wrap: break-word;
 }
