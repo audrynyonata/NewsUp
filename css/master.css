@@ -36,46 +36,39 @@ div {
   position: absolute; 
   top: 10px;
   right: 10px;
-  border: solid 1px darkgrey;
+  bottom: -1px;
+  border: outset 1px darkgrey;
   border-radius: 15%;
-  width: 45px;
+  width: 50px;
   height: 40px;
   text-align: center;
   }
 
-#settings img {
-  width: 36px;
-  padding: 1px 0 0 0;
+#cog{
+  width: 34px;
+  margin-top : 2px;
+  filter: brightness(150%);
   height: auto;
 }
 
 /* The Modal (background) */
 #modal {
     display: none; /* Hidden by default */
-    z-index: 1; /* Sit on top */
-    
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    width: 400px; 
+    height: 475px; 
+    overflow:hidden;
+    position:absolute;  
+    background-color: rgba(0,0,0,0.4);  
 }
 
 /* Modal Content */
 #content {
-    background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-}
-
-/* The Close Button */
-#close {
-    color: #aaaaaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+    background-color: #ECF0F1;
+    padding: 10px;
+    width: 75%;
+    height: 100%;
+    display: block;
+    position: absolute;
 }
 
 .frame {
@@ -91,7 +84,8 @@ div {
 	margin:auto;
 	max-width:100%;
 	max-height:100%;
-  overflow:auto;
+  overflow-y:auto;
+  overflow-x:hidden;
   box-shadow: 5px 5px 15px rgba(0,0,0,.2);
 }
 
@@ -100,6 +94,7 @@ div {
   overflow:auto;  
   height: 475px; 
   background-color: #ECF0F1;
+  position:relative;
 }
 
 #scrollbar::-webkit-scrollbar
@@ -143,6 +138,7 @@ div {
   width: 60px;
   height: 60px;
   border: 0;
+  outline: none;
   background-color: #D25400;
   /*background-image: url("../img/send.png");*/
   background-repeat: no-repeat;

@@ -12,43 +12,84 @@
     <div class="logo">
       <div id = "title">News<span style="font-family:'calibri';">Up!</span></div>
     </div>
-    <div id="settings" onclick="showsettings()"><img src="img/cog.png"></div>
-    
-    <div  id="scrollbar" class="chatwindow">
+    <div id="settings" onclick="showsettings();"><img id="cog" src="img/cog.png"></div>
       <div id="modal">
         <div id="content">
           <p>Some text in the Modal..</p>
           </div>
       </div>
+    <div  id="scrollbar" class="chatwindow">
       <div class="callout left" id="greeting">
         Halo! Silahkan ketik kata kunci yang anda inginkan, atau 'help' untuk bantuan.
       </div>
     </div>
+
     <div class="form">
       <form method="POST">
       <textarea id="keyword" name="keyword" placeholder="ketik pesan anda disini..." onkeyup="pressEnter(event)"></textarea> 
-      <button type="button" id="send" name="send" value="" onclick="sendMessage()"><i class="material-icons send-white">send</i>
+      <button type="button" id="send" name="send" value="" onclick="clicksend();"><i class="material-icons send-white">send</i></button>
     </form>
     </div>
   </div>
 </body>
 
 <script type="text/javascript">
+
   var nomor = 1;  
-  
+  var isModal = false;
   var modal = document.getElementById("modal");
-  function showsettings() {
-    modal.style.display = "block";
-  }
+  var content = document.getElementById("content");
+  var scrollbar = document.getElementById("scrollbar");
+  var button = document.getElementById("send");
   
-  window.onclick = function(event) {
-    if (event.target == modal) {
-        close();
+  function slideKiri() {
+    var pos = 400;
+    var id = setInterval(frame, 10);
+    function frame() {
+      if (pos == 80) {
+        clearInterval(id);
+      } else {
+        pos=pos-10;
+        content.style.left = pos + 'px'; 
+      }
     }
   }
   
-  function close() {
-      modal.style.display="none";
+  function slideKanan() {
+    var pos = 80
+    var id = setInterval(frame, 10);
+    function frame() {
+      if (pos == 400) {
+        clearInterval(id);
+        setTimeout(hideModal,100);
+      } else {
+        pos=pos+10;
+        content.style.left = pos + 'px'; 
+      }
+    }
+    
+    var hideModal = function() {
+      modal.setAttribute("style", "z-index:-999");
+    }
+  }
+  
+  function showsettings() {
+    var settings = document.getElementById("settings");
+    var cog = document.getElementById("cog");
+    if (isModal==true) { //lagi buka settings
+      slideKanan();
+      settings.setAttribute("style","border-style:outset;");
+      scrollbar.style.display= "block";
+      cog.setAttribute("style","margin-top: 2px;filter:brightness(150%)");
+      isModal = false;
+    } else {
+      slideKiri();
+      settings.setAttribute("style","border:inset 1px black;box-shadow: inset 0 2px 4px #000;");
+      cog.setAttribute("style","margin-top: 3px;filter:none");
+      modal.setAttribute("style", "z-index:1");
+      modal.style.display = "block";
+      isModal = true;
+    }
   }
   
   function pressEnter(e) {
@@ -62,6 +103,19 @@
     return true;
  }
  
+  function clicksend() {
+    button.style.opacity=0; 
+    var tick = function() {
+      button.style.opacity = +button.style.opacity + 0.05;   
+        if (+button.style.opacity < 1) {
+          (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16)
+        }
+      };
+    tick();
+    sendMessage();
+    return true;
+  }
+  
   function sendMessage() {
       var textarea = document.getElementById("keyword");
       var str = textarea.value;
@@ -76,7 +130,7 @@
           div.innerText = moment().format('LT') + "\n" + str;
           document.getElementById("scrollbar").appendChild(div);
           nomor++;
-
+        
           // setting up xmlhttp request, pengiriman ajax
           var xmlhttp = new XMLHttpRequest();
           xmlhttp.onreadystatechange = function() {
@@ -90,7 +144,6 @@
             div2.setAttribute("class", "callout left");
             div2.innerText = content;
             document.getElementById("scrollbar").appendChild(div2);
-            var scrollbar = document.getElementById("scrollbar");
             scrollbar.scrollTop = scrollbar.scrollHeight;
             nomor++;
         }
@@ -112,7 +165,7 @@
       xmlhttp.send();
       }
       textarea.value="";      
-  }
+}
 </script>
 <script type="text/javascript" src="moment.js"></script>
 </html>
