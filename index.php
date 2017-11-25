@@ -13,13 +13,14 @@
       <div id = "title">News<span style="font-family:'calibri';">Up!</span></div>
     </div>
     <div id="settings" onclick="showsettings();"><img id="cog" src="img/cog.png"></div>
+      <div id="bar" class="centered"></div>
       <div id="modal">
         <div id="content">
           <h2>Preferences</h2>
           <p>Masukkan alamat e-mail Anda dibawah ini untuk menerima notifikasi.</p>
-          <form method="POST" class="centered">
+          <form method="POST" class="centered" onsubmit="return false;">
             <div id="preferences">
-              <input id="email" type="text" placeholder="my@email.com">
+              <input id="email" type="text" name="email" placeholder="my@email.com">
               <button id="clear" type="reset"></button>
             </div>            
             <button type="button" id="save" name="save" onclick="saveemail();">Simpan</button>          
@@ -34,9 +35,6 @@
       <div class="callout left" id="greeting">
         Halo! Silahkan ketik kata kunci yang anda inginkan, atau 'help' untuk bantuan.
       </div>
-
-      
-      
     </div>
 
     <div class="form">
@@ -49,17 +47,50 @@
 </body>
 
 <script type="text/javascript">
-  function saveemail() {
-    var email = document.getElementById("email");
-    alert(email.value);
-  }
-
   var nomor = 1;  
   var isModal = false;
   var modal = document.getElementById("modal");
   var content = document.getElementById("content");
   var scrollbar = document.getElementById("scrollbar");
   var button = document.getElementById("send");
+  var bar = document.getElementById("bar");
+  var email = document.getElementById("email");
+  var save = document.getElementById("save");  
+  var z = setInterval(shownotification,6000);
+  var w = setInterval(hidenotification,3000);
+  
+  function shownotification() {
+    if (email.value!="") {
+      bar.innerText="Sent notification to: " + email.value;
+      bar.setAttribute("style","z-index:3;");
+      if (bar.style.opacity >= 1) {
+     } else {
+        bar.style.opacity=0; 
+        var tick = function() {
+        bar.style.opacity = +bar.style.opacity + 0.05;   
+        if (+bar.style.opacity < 1) {
+          (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 32)
+        }
+      }
+      };
+    tick();
+    } else {
+
+    }
+  }
+  function hidenotification() {
+    if (bar.style.opacity >= 1) {
+    bar.setAttribute("style","z-index:-1000;");
+   }
+  }
+  function saveemail() {
+    if (email.value=="") {
+      save.disable = "true"
+    } else {
+      shownotification();
+      slideKanan();
+    }
+  }
   
   function slideKiri() {
     var pos = 400;
@@ -89,6 +120,12 @@
     
     var hideModal = function() {
       modal.setAttribute("style", "z-index:-999");
+    }
+  }
+  
+  window.onclick = function(event) {
+    if (event.target == modal || event.target==keyword || event.target==save) {
+        slideKanan();
     }
   }
   
@@ -200,7 +237,6 @@
       textarea.value="";  
     }
 }
-    
     
   function createDummy() {
     var dummy = document.createElement("div");
