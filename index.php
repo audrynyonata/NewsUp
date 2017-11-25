@@ -26,7 +26,7 @@
 
     <div class="form">
       <form method="POST">
-      <textarea id="keyword" name="keyword" placeholder="ketik pesan anda disini..." onkeyup="pressEnter(event)"></textarea> 
+      <textarea id="keyword" name="keyword" placeholder="ketik pesan anda disini..." autofocus onkeyup="pressEnter(event)"></textarea> 
       <button type="button" id="send" name="send" value="" onclick="clicksend();"><i class="material-icons send-white">send</i></button>
     </form>
     </div>
@@ -61,7 +61,7 @@
     function frame() {
       if (pos == 400) {
         clearInterval(id);
-        setTimeout(hideModal,100);
+        setTimeout(hideModal,110);
       } else {
         pos=pos+10;
         content.style.left = pos + 'px'; 
@@ -116,9 +116,22 @@
     return true;
   }
   
+  
   function sendMessage() {
-      var textarea = document.getElementById("keyword");
-      var str = textarea.value;
+        var textarea = document.getElementById("keyword");
+        var str = textarea.value;
+        var appendChild = function(arg) {
+          document.getElementById("scrollbar").appendChild(arg);
+          arg.style.opacity=0.35; 
+          var tick = function() {
+            arg.style.opacity = +arg.style.opacity + 0.05;   
+            if (+arg.style.opacity < 1) {
+              (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16)
+            }
+          };
+        tick();
+        scrollbar.scrollTop = scrollbar.scrollHeight;
+      }
       if (str == "") {
           // do nothing
 
@@ -128,7 +141,7 @@
           div.setAttribute("id", "test"+nomor);
           div.setAttribute("class", "callout right");
           div.innerText = moment().format('LT') + "\n" + str;
-          document.getElementById("scrollbar").appendChild(div);
+          appendChild(div);
           nomor++;
         
           // setting up xmlhttp request, pengiriman ajax
@@ -143,8 +156,7 @@
             div2.setAttribute("id", "test"+nomor);
             div2.setAttribute("class", "callout left");
             div2.innerText = content;
-            document.getElementById("scrollbar").appendChild(div2);
-            scrollbar.scrollTop = scrollbar.scrollHeight;
+            var x = setTimeout(function() {appendChild(div2)}, 500);
             nomor++;
         }
       }
@@ -166,6 +178,7 @@
       }
       textarea.value="";      
 }
+            
 </script>
 <script type="text/javascript" src="moment.js"></script>
 </html>
