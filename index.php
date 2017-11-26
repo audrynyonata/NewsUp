@@ -222,7 +222,7 @@
       if (str.includes("berita")) {
         var i = str.indexOf("berita")+6;
         str = str.substring(i);
-      } else { //cek double-quotes
+      } else if (str.includes("'")) { //cek double-quotes
         var i = str.indexOf("'")+1;
         str = str.substring(i);
         i = str.indexOf("'");
