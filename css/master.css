@@ -136,9 +136,12 @@ div {
   height: 600px;
   width: 400px;
   border-style: solid;
-  border-color: #D25400;
+  border-left: solid 10px black;
+  border-right: solid 10px black;
+  border-top: solid 40px black;
+  border-bottom: solid 70px black;
   background-color: #D25400;
-  border-radius: 5px;
+  border-radius: 20px;
   position: fixed;
   left:0; right:0;
   top:0; bottom:0;
@@ -147,7 +150,7 @@ div {
 	max-height:100%;
   overflow-y:auto;
   overflow-x:hidden;
-  box-shadow: 5px 5px 15px rgba(0,0,0,.2);
+  box-shadow: 7px 5px 20px rgba(0,0,16,.8);
 }
 
 .chatWindow {

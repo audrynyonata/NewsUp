@@ -27,21 +27,24 @@
           </form>
           
           <h4>About</h4>
-          <p>Untuk bantuan, ketik 'help' pada chatbox dan tekan enter!</p>
+          <p>NewsUp! adalah sebuah chatbot untuk memudahkan Anda mencari berita. Untuk bantuan, ketik 'help' pada chatbox dan tekan enter!</p>
           <p>NewsUp! &copy; 2017 NewsFinders. Credits to aggi, audry, ega, royyan.</p>
           </div>
       </div>
     <div id="scrollbar" class="chatwindow">
       <div class="callout left" id="greeting">
-        Halo! Silahkan ketik kata kunci yang anda inginkan, atau 'help' untuk bantuan.
+        Halo! "NewsUp!" adalah sebuah chatbot untuk memudahkan Anda mencari berita.
+      </div>
+      <div class="callout left" id="greeting">
+        Silahkan ketik kata kunci yang anda inginkan, atau 'help' untuk bantuan.
       </div>
     </div>
 
     <div class="form">
       <form method="POST">
       <textarea id="keyword" name="keyword" placeholder="ketik pesan anda disini..." autofocus onkeyup="pressEnter(event)"></textarea> 
-      <button type="button" id="send" name="send" value="" onclick="clicksend();"><i class="material-icons send-white">send</i></button>
-    </form>
+       <button type="button" id="send" name="send" value="" onclick="clicksend();"><i class="material-icons send-white">send</i></button>
+      </form>
     </div>
   </div>
 </body>
@@ -187,7 +190,7 @@
         tick();
         scrollbar.scrollTop = scrollbar.scrollHeight;
       }
-      if (str == "") {
+      if (str === "") {
           // do nothing
 
       } else {
@@ -215,6 +218,17 @@
             nomor++;
         }
       }
+      
+      if (str.includes("berita")) {
+        var i = str.indexOf("berita")+6;
+        str = str.substring(i);
+      } else { //cek double-quotes
+        var i = str.indexOf("'")+1;
+        str = str.substring(i);
+        i = str.indexOf("'");
+        str = str.substring(0,i);
+      }
+      
       var substrings = ['help', 'politik', 'olahraga', 'malam', 'teknologi', 'ekonomi', 'siang', 'sore', 'pagi'];
       var i = 0;
       var found  = 0;
