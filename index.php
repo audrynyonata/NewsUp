@@ -241,13 +241,10 @@
           i++;
         }
       }
-      if (str=="olahraga") {
-        var dummy = createDummy();
-        var y = setTimeout(function() {appendChild(dummy),500});
-      } else {
-        xmlhttp.open("GET", "send.php?keyword=" + str, true);
-        xmlhttp.send();
-      }
+      
+      xmlhttp.open("GET", "send.php?keyword=" + str, true);
+      xmlhttp.send();
+    
       textarea.value="";  
     }
 }
