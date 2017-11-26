@@ -222,14 +222,14 @@
       if (str.includes("berita")) {
         var i = str.indexOf("berita")+6;
         str = str.substring(i);
-      } else if (str.includes("'")) { //cek double-quotes
-        var i = str.indexOf("'")+1;
+      } else if (str.includes('"')) { //cek double-quotes
+        var i = str.indexOf('"')+1;
         str = str.substring(i);
         i = str.indexOf("'");
         str = str.substring(0,i);
       }
       
-      var substrings = ['help', 'politik', 'olahraga', 'malam', 'teknologi', 'ekonomi', 'siang', 'sore', 'pagi'];
+      var substrings = ['olahraga', 'ekonomi', 'teknologi', 'politik', 'pagi', 'sore', 'siang', 'malam', 'halo', 'hai', 'konnichiwa', 'cuaca', 'hello', 'bantuan', 'cara', 'help', 'hari ini', 'jokowi', 'artis', 'infotainment', 'selebrit', 'bola', 'messi', 'sport', 'terkini', 'lifestyle', 'hidup', 'tekno', 'digital' ,'data'];
       var i = 0;
       var found  = 0;
       while (found==0 && i < substrings.length) {
