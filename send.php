@@ -1,8 +1,14 @@
 <?php
   $keyword = $_GET['keyword'];
+  $isBerita = $_GET['isBerita'];
+  
   $con = mysqli_connect('localhost','root','','newsup');
   mysqli_select_db($con, 'newsup');
-  $sql = "SELECT content FROM reply WHERE query LIKE '%" . (string)$keyword . "%'";
+  if ($isBerita == "true") {
+    $sql = "SELECT content FROM reply WHERE content LIKE '%" . (string)$keyword . "%'";
+  } else {
+    $sql = "SELECT content FROM reply WHERE query LIKE '%" . (string)$keyword . "%'";
+  }
   $result = mysqli_query($con, $sql);
   mysqli_close($con);
   

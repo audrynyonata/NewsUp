@@ -16,8 +16,8 @@
       <div id="bar" class="centered"></div>
       <div id="modal">
         <div id="content">
-          <h2>Preferences</h2>
-          <p>Masukkan alamat e-mail Anda dibawah ini untuk menerima notifikasi.</p>
+          <h2>Pengaturan notifikasi</h2>
+          <p>Masukkan alamat e-mail Anda untuk mulai menerima notifikasi. Untuk berhenti, cukup kosongkan kotak dibawah ini.</p>
           <form method="POST" class="centered" onsubmit="return false;">
             <div id="preferences">
               <input id="email" type="text" name="email" placeholder="my@email.com">
@@ -92,6 +92,10 @@
     } else {
       shownotification();
       slideKanan();
+      settings.setAttribute("style","border-style:outset;");
+      scrollbar.style.display= "block";
+      cog.setAttribute("style","margin-top: 2px;filter:brightness(150%)");
+      isModal = false;
     }
   }
   
@@ -129,6 +133,10 @@
   window.onclick = function(event) {
     if (event.target == modal || event.target==keyword || event.target==save) {
         slideKanan();
+        settings.setAttribute("style","border-style:outset;");
+        scrollbar.style.display= "block";
+        cog.setAttribute("style","margin-top: 2px;filter:brightness(150%)");
+        isModal = false;
     }
   }
   
@@ -156,8 +164,9 @@
       if (e.shiftKey) {
         //kasih newline
       } else {
-        // start your submit function
-        sendMessage();  
+        var textarea = document.getElementById("keyword");
+        sendMessage();
+        textarea.value="";
     }
     return true;
  }
@@ -190,10 +199,7 @@
         tick();
         scrollbar.scrollTop = scrollbar.scrollHeight;
       }
-      if (str === "") {
-          // do nothing
-
-      } else {
+      if (textarea.value != "" && textarea.value != "\n") {
           // tambahkan chat balloon baru_dari user
           var div = document.createElement("div");
           div.setAttribute("id", "test"+nomor);
@@ -203,6 +209,7 @@
           nomor++;
         
           // setting up xmlhttp request, pengiriman ajax
+          
           var xmlhttp = new XMLHttpRequest();
           xmlhttp.onreadystatechange = function() {
           if (this.readyState == 4 && this.status == 200) {
@@ -219,66 +226,67 @@
         }
       }
       
-      if (str.includes("berita")) {
+      var isBerita = "false";
+      
+      if (str.includes("genre")) {
+        str = "help";
+        isBerita = "false";
+      } else if (str.includes("setting") || str.includes("notif") || str.includes("atur")) {
+        showsettings();
+        textarea.value="";
+        str = "help";
+        isBerita = "false";
+      } else if (str.includes("kas")) {
+        str = "terima kasih";
+        isBerita = "false";
+      } else if (str.includes("berita")) {
         var i = str.indexOf("berita")+6;
         str = str.substring(i);
+        isBerita = "true";
       } else if (str.includes('"')) { //cek double-quotes
         var i = str.indexOf('"')+1;
         str = str.substring(i);
         i = str.indexOf("'");
         str = str.substring(0,i);
+        isBerita = "true";
       }
       
-      var substrings = ['olahraga', 'ekonomi', 'teknologi', 'politik', 'pagi', 'sore', 'siang', 'malam', 'halo', 'hai', 'konnichiwa', 'cuaca', 'hello', 'bantuan', 'cara', 'help', 'hari ini', 'jokowi', 'artis', 'infotainment', 'selebrit', 'bola', 'messi', 'sport', 'terkini', 'lifestyle', 'hidup', 'tekno', 'digital' ,'data'];
-      var i = 0;
-      var found  = 0;
-      while (found==0 && i < substrings.length) {
-        if (str.includes(substrings[i])) {
-          // if found terus apa?
-          found = 1;
-          str = substrings[i];
-        } else {
-          i++;
+      if (isBerita==="true") {
+        var substrings = ['olah','raga', 'ekonomi', 'teknologi', 'politik', 'hari ini', 'jokowi', 'artis', 'infotainment', 'selebrit', 'bola', 'messi', 'sport', 'terkini', 'lifestyle', 'hidup', 'tekno', 'digital' ,'data'];
+        var i = 0;
+        var found  = 0;
+        while (found==0 && i < substrings.length) {
+          if (str.includes(substrings[i])) {
+            // if found terus apa?
+            found = 1;
+            str = substrings[i];
+          } else {
+            i++;
+          }
+        }
+        if (found == 1) {
+          isBerita = "false";
+        }
+      } else {
+        var substrings = ['olahraga', 'ekonomi', 'teknologi', 'politik', 'pagi', 'sore', 'siang', 'malam', 'halo', 'hai', 'konnichiwa', 'hello', 'bantuan', 'cara', 'help', 'hari ini', 'jokowi', 'artis', 'infotainment', 'selebrit', 'bola', 'messi', 'sport', 'terkini', 'lifestyle', 'hidup', 'tekno', 'digital' ,'data'];
+        var i = 0;
+        var found  = 0;
+        while (found==0 && i < substrings.length) {
+          if (str.includes(substrings[i])) {
+            // if found terus apa?
+            found = 1;
+            str = substrings[i];
+          } else {
+            i++;
+          }
         }
       }
-      
-      xmlhttp.open("GET", "send.php?keyword=" + str, true);
+     
+      xmlhttp.open("GET", "send.php?keyword=" + str +"&isBerita=" + isBerita, true);
       xmlhttp.send();
-    
-      textarea.value="";  
     }
 }
     
-  function createDummy() {
-    var dummy = document.createElement("div");
-    dummy.innerHTML = '\
-    <div class="callout left" id="dummy">\
-        <div class="berita" id="berita1">\
-          <img class="foto" src="img/1.jpeg">\
-          <div class="judul" onclick="window.open(\'http://olahraga.kompas.com/read/2017/11/25/11575621/mengatur-hasil-petarung-ufc-dipenjara\',\'_blank\');">\
-            <div class="bottom-text">Petinju</div>\
-          </div>\
-        </div>\
-        <div class="berita" id="berita2">\
-          <img class="foto" src="img/2.jpeg">\
-          <div class="judul"\
-          onclick="window.open(\'http://olahraga.kompas.com/read/2017/11/26/08545151/peluang-greysiaapriyani-di-mata-pelatih\',\'_blank\');">\
-          <div class="bottom-text">Pasangan Ganda Putri Indonesia, Greysia Polili Apriani Rahayu</div></div>\
-        </div>\
-        <div class="berita" id="berita3">\
-          <img class="foto" src="img/3.jpeg">\
-          <div class="judul" onclick="window.open(\'https://www.suara.com/news/2017/07/30/211549/menangi-gp-hungaria-vettel-jauhi-dari-kejaran-hamilton\',\'_blank\');">\
-            <div class="bottom-text">Pembalap Ferrari Sebastian Vettel</div></div>\
-        </div>\
-        <div class="berita" id="berita1">\
-          <img class="foto" src="img/4.jpeg">\
-          <div class="judul"\
-          onclick="window.open(\'http://bola.liputan6.com/read/3175302/makin-banyak-senggolan-di-motogp-ini-komentar-rossi\',\'_blank\');">\
-          <div class="bottom-text">Pembalap MotoGP</div></div>\
-        </div>\
-      </div>';
-      return dummy;
-    }          
 </script>
 <script type="text/javascript" src="moment.js"></script>
 </html>
