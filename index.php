@@ -181,6 +181,8 @@
       };
     tick();
     sendMessage();
+    var textarea=document.getElementById("keyword");
+    textarea.value="";
     return true;
   }
   
